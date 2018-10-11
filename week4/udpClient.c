@@ -20,7 +20,7 @@ int main(int argc, char **argv)
     servaddr.sin_family = AF_INET;
     servaddr.sin_port = htons(SERV_PORT);
     if (argc == 2)
-        servaddr.sin_addr.s_addr = inet_addr(argv);
+        servaddr.sin_addr.s_addr = inet_addr(argv[1]);
     else
         servaddr.sin_addr.s_addr = inet_addr("127.0.0.1");
     //inet_pton(AF_INET, "127.0.0.1", &servaddr.sin_addr);
