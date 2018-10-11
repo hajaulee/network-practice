@@ -8,7 +8,7 @@
 #include <unistd.h>
 #define SERV_PORT 1255
 #define MAXLINE 250
-int main()
+int main(int argc, char **argv)
 {
     int sockfd, n, from_len;
     struct sockaddr_in servaddr, from_socket;
@@ -19,7 +19,10 @@ int main()
 
     servaddr.sin_family = AF_INET;
     servaddr.sin_port = htons(SERV_PORT);
-    servaddr.sin_addr.s_addr = inet_addr("127.0.0.1");
+    if (argc == 2)
+        servaddr.sin_addr.s_addr = inet_addr(argv);
+    else
+        servaddr.sin_addr.s_addr = inet_addr("127.0.0.1");
     //inet_pton(AF_INET, "127.0.0.1", &servaddr.sin_addr);
 
     sockfd = socket(AF_INET, SOCK_DGRAM, 0);
